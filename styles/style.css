@@ -527,7 +527,7 @@ footer::before {
 
 @media screen and (max-width: 768px) {
   body {
-    padding-block-end: 3rem;
+    padding-block: 3rem;
   }
 
   .header_logo {
