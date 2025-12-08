@@ -572,6 +572,10 @@ footer::before {
     padding: 0 1.5rem 0.5rem 0;
   }
 
+  .slide_header:hover .slide_number {
+    border-inline-end: none;
+  }
+
   footer {
     max-inline-size: 100%;
   }
