@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Regular-Web.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-RegularItalic-Web.woff2) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Bold-Web.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-BoldItalic-Web.woff2) format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Extrabold-Web.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-ExtraboldItalic-Web.woff2) format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rolling Stone Slab";
+  src: url(./RollingStoneSlab-Semibold-Web.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rolling Stone Slab";
+  src: url(./RollingStoneSlab-Black-Web.woff2) format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rolling Stone Slab";
+  src: url(./RollingStoneSlab-BlackItalic-Web.woff2) format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
