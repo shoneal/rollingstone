@@ -181,8 +181,9 @@ const basicLink = "https://shoneal.github.io/rollingstone/images/";
 const getImagePath = (title, folder, format = "jpg") => {
   const slug = title
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, "_");
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[-\s]+/g, "_")
+    .replace(/_{2,}/g, "_");
   return `${basicLink}${folder}/${slug}.${format}`;
 }; // Путь к изображению
 
@@ -257,12 +258,10 @@ const initializeHeaderImages = (shows) => {
       alt: key,
       onload: onLoad,
     });
-    container.appendChild(
-      Object.assign(document.createElement("div"), {
-        className: "header_image",
-        appendChild: img,
-      })
-    );
+    const wrapper = document.createElement("div");
+    wrapper.className = "header_image";
+    wrapper.appendChild(img);
+    container.appendChild(wrapper);
   });
 };
 initializeHeaderImages(shows); // Создание главной картинки
