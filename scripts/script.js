@@ -344,8 +344,15 @@ navigation.addEventListener("click", (e) => {
 
   const headerHeight =
     document.querySelector(".header_sticky")?.offsetHeight || 0;
+  const navHeight =
+    window.innerWidth < 768
+      ? document.querySelector(".navigation")?.offsetHeight || 0
+      : 0;
+
+  const totalOffset = headerHeight + navHeight + 10;
+
   window.scrollTo({
-    top: targetSlide.offsetTop - headerHeight - 10,
+    top: targetSlide.offsetTop - totalOffset,
     behavior: "auto",
   });
 }); // Обработка кликов по навигации

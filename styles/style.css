@@ -180,11 +180,6 @@ main {
   cursor: pointer;
 }
 
-.author_link:hover {
-  color: var(--brand-primary);
-  text-decoration: underline currentcolor;
-}
-
 .author_details_wrapper {
   position: absolute;
   top: 100%;
@@ -446,6 +441,11 @@ footer::before {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .author_link:hover {
+    color: var(--brand-primary);
+    text-decoration: underline currentcolor;
+  }
+
   .slide_header:hover {
     color: white;
     background: var(--slide-hover);
