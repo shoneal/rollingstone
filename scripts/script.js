@@ -305,14 +305,12 @@ Object.entries(shows)
 const navigation = document.querySelector(".navigation");
 const showsTotal = Object.keys(shows).length;
 document.querySelector(".header_number").textContent = showsTotal; // Обновление заголовка
+
 function createNavigationBlocks() {
-  const blocks = [];
-  for (let start = 1; start <= showsTotal; start += 5) {
-    blocks.push({
-      start,
-      end: Math.min(start + 4, showsTotal),
-    });
-  }
+  const blocks = Array.from({ length: Math.ceil(showsTotal / 5) }, (_, i) => {
+    const start = i * 5 + 1;
+    return { start, end: Math.min(start + 4, showsTotal) };
+  });
 
   if (blocks.length > 1) {
     const last = blocks[blocks.length - 1];
@@ -322,37 +320,80 @@ function createNavigationBlocks() {
     }
   }
 
-  blocks.reverse().forEach((block) => {
-    const link = createLinkElement(block);
+  blocks.reverse().forEach(({ start, end }) => {
+    const link = Object.assign(document.createElement("a"), {
+      className: "navigation_link",
+      href: `#${end}`,
+      textContent: `${end}-${start}`,
+    });
+    link.dataset.rangeStart = start;
+    link.dataset.rangeEnd = end;
     navigation.appendChild(link);
   });
+
+  initScrollHandler();
+  initClickHandler();
 }
-function createLinkElement({ start, end }) {
-  const link = document.createElement("a");
-  link.className = "navigation_link";
-  link.href = `#${end}`;
-  link.textContent = `${end}-${start}`;
-  return link;
+function initScrollHandler() {
+  function updateActiveLink() {
+    const slides = document.querySelectorAll('[id^="slide-"]');
+    const links = document.querySelectorAll(".navigation_link");
+
+    links.forEach((link) => link.classList.remove("navigation_link-is_active"));
+
+    let foundActive = false;
+
+    for (let i = slides.length - 1; i >= 0; i--) {
+      const slide = slides[i];
+      const slideNum = parseInt(slide.id.replace("slide-", ""), 10);
+      const rect = slide.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        links.forEach((link) => {
+          const rangeStart = parseInt(link.dataset.rangeStart, 10);
+          const rangeEnd = parseInt(link.dataset.rangeEnd, 10);
+
+          if (slideNum >= rangeStart && slideNum <= rangeEnd) {
+            link.classList.add("navigation_link-is_active");
+            foundActive = true;
+          }
+        });
+
+        if (foundActive) break;
+      }
+    }
+  }
+
+  updateActiveLink();
+  window.addEventListener("scroll", updateActiveLink);
+  window.addEventListener("resize", updateActiveLink);
+}
+function initClickHandler() {
+  navigation.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("navigation_link")) return;
+
+    const headerSticky = document.querySelector(".header_sticky");
+    const targetRank = e.target.hash.slice(1);
+    const targetSlide = document.getElementById(`slide-${targetRank}`);
+    if (!targetSlide) return;
+
+    const headerHeight = headerSticky?.offsetHeight || 0;
+    const navHeight =
+      window.innerWidth < 768 ? navigation?.offsetHeight || 0 : 0;
+
+    const totalOffset = headerHeight + navHeight + 10;
+
+    window.scrollTo({
+      top: targetSlide.offsetTop - totalOffset,
+      behavior: "auto",
+    });
+
+    const links = document.querySelectorAll(".navigation_link");
+    links.forEach((link) =>
+      link.classList[link === e.target ? "add" : "remove"](
+        "navigation_link-is_active"
+      )
+    );
+  });
 }
 createNavigationBlocks(); // Создание навигации
-navigation.addEventListener("click", (e) => {
-  if (!e.target.classList.contains("navigation_link")) return;
-
-  const targetRank = e.target.hash.slice(1);
-  const targetSlide = document.getElementById(`slide-${targetRank}`);
-  if (!targetSlide) return;
-
-  const headerHeight =
-    document.querySelector(".header_sticky")?.offsetHeight || 0;
-  const navHeight =
-    window.innerWidth < 768
-      ? document.querySelector(".navigation")?.offsetHeight || 0
-      : 0;
-
-  const totalOffset = headerHeight + navHeight + 10;
-
-  window.scrollTo({
-    top: targetSlide.offsetTop - totalOffset,
-    behavior: "auto",
-  });
-}); // Обработка кликов по навигации
