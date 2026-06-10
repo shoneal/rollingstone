@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+ul,
+figure,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+figure,
+img,
+svg {
+  display: block;
+  pointer-events: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 110px 0 5rem;
+  overflow-x: hidden;
+  font-family: "Feature Flat Text", serif;
+  background-color: var(--color-body);
+}
+
+.paragraph {
+  font-size: 1.25rem;
+  line-height: 1.9375rem;
+  letter-spacing: 0.1px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 70px 0 5rem;
+  }
+}

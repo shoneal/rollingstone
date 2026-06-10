@@ -1,0 +1,22 @@
+:root {
+  --color-body: white;
+  --border: black;
+  --brand-primary: #e60019;
+  --link-hover: #767676;
+  --background-grey: #efefef;
+  --linear-gradient-left: #f6f7f8;
+  --linear-gradient-right: #d2d2d2;
+  --black-to-white: black;
+}
+
+@media (prefers-color-scheme: dark), .dark-theme {
+  :root {
+    --color-body: #121212;
+    --border: #575757;
+    --link-hover: #939191;
+    --background-grey: #272727;
+    --linear-gradient-left: #212122;
+    --linear-gradient-right: #3d3d3d;
+    --black-to-white: white;
+  }
+}

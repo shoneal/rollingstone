@@ -1,0 +1,200 @@
+.sticky .header-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-container {
+  display: none;
+  width: 100%;
+  height: 22px;
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.sticky .nav-container {
+  display: block;
+}
+
+.nav-container .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.nav-container .nav-list a {
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: normal;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-container .nav-list a.active {
+  font-weight: 700;
+}
+
+main {
+  max-width: 762px;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+}
+
+main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main header {
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.article-title {
+  padding: 0.25rem 0 0.5rem;
+  font-family: "Rolling Stone Slab", serif;
+  font-weight: 900;
+  font-size: 7rem;
+  line-height: 6rem;
+  text-transform: uppercase;
+}
+
+.article-excerpt {
+  padding-bottom: 1.25rem;
+  font-family: "Feature Flat Deck", serif;
+  font-size: 40px;
+  line-height: 42px;
+}
+
+.article-excerpt::first-letter {
+  font-feature-settings: "swsh";
+}
+
+.featured-image {
+  width: 100%;
+  border: 2px solid var(--border);
+  overflow: hidden;
+  background: var(--background-grey);
+  aspect-ratio: 1.5;
+}
+
+.featured-image .figure {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  opacity: 0;
+}
+
+.featured-media .figcaption {
+  margin-top: 0.5rem;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.gallery {
+  max-width: 662px;
+  margin: 0 auto;
+}
+
+.slide {
+  margin-top: 0.25rem;
+  overflow: hidden;
+}
+
+.slide:not(:last-child) {
+  margin-bottom: 5rem;
+}
+
+.slide-figure-wrapper {
+  width: 100%;
+  border: 3px solid var(--border);
+  background: var(--linear-gradient-left);
+  background-image: linear-gradient(
+    90deg,
+    var(--linear-gradient-left) 0,
+    var(--linear-gradient-right) 20%,
+    var(--linear-gradient-left) 40%,
+    var(--linear-gradient-left)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1s infinite ease-in-out;
+}
+
+.slide-number {
+  color: white;
+  font-family: "Rolling Stone Slab", serif;
+  font-weight: 900;
+  font-size: 8.125rem;
+  line-height: 6rem;
+  letter-spacing: 0.2rem;
+  -webkit-text-stroke: 3px var(--black-to-white);
+}
+
+.slide-title {
+  font-family: "Feature Flat Deck", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.125rem;
+}
+
+@media screen and (max-width: 1260px) {
+  main {
+    max-width: 732px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  main {
+    max-width: 100%;
+    padding-top: 1.5rem;
+  }
+
+  main header {
+    padding: 0 1.5rem 1.75rem;
+  }
+
+  .article-title {
+    font-size: 4.5rem;
+    line-height: 3.875rem;
+  }
+
+  .article-excerpt {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sticky .header-content {
+    gap: 1rem;
+  }
+
+  main header {
+    padding: 0 0 1.5rem;
+  }
+
+  .article-title {
+    padding: 0.75rem 1.5rem 0.5rem;
+  }
+
+  .article-excerpt {
+    padding: 0 3.25rem 0.5rem;
+  }
+
+  .featured-media {
+    padding: 0 0.5625rem;
+  }
+
+  .gallery {
+    max-width: 100%;
+    padding-inline: 1.5rem;
+  }
+}
