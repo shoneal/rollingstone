@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Regular-Web.woff2) format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-RegularItalic-Web.woff2) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Bold-Web.woff2) format("woff2");
+  font-weight: 700;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Feature Flat Text";
+  src: url(./FeatureFlatText-Extrabold-Web.woff2) format("woff2");
+  font-weight: 800;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Feature Flat Deck";
+  src: url(./FeatureFlatDeck-SwashRegular-Web.woff2) format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Feature Flat Deck";
+  src: url(./FeatureFlatDeck-Bold-Web.woff2) format("woff2");
+  font-weight: 700;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Rolling Stone Slab";
+  src: url(./RollingStoneSlab-Black-Web.woff2) format("woff2");
+  font-weight: 900;
+  font-display: block;
+}
