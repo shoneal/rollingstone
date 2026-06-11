@@ -37,8 +37,8 @@ const showImage = (img) => {
     img.addEventListener("error", onLoadOrError, { once: true });
   }
 }; // Функция для настройки загрузки изображения
-const getImagePath = (folder, title) => {
-  return `${basicLink}${folder}/${textToSlug(title)}.jpg`;
+const getImagePath = (link, folder, title) => {
+  return `${link}${folder}/${textToSlug(title)}.jpg`;
 }; // Путь к изображению
 const debounce = (func, delay) => {
   let timeout;
