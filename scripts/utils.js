@@ -15,6 +15,8 @@ const textToSlug = (text) => {
     .replace(/\bII\b/g, "2")
     .toLowerCase()
     .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['’]/g, "")
     .replace(/\s*\(.*?\)\s*/g, " ")
     .replace(/[.,:;]/g, " ")
     .trim()
