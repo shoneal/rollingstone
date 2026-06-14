@@ -107,6 +107,7 @@ main header {
 .slide {
   margin-top: 0.25rem;
   overflow: hidden;
+  scroll-margin-top: 6rem;
 }
 
 .slide:not(:last-child) {
