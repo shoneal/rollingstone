@@ -548,4 +548,25 @@ export const data = {
         "In order to get away from their busy lives, the Wilson family takes a vacation to Santa Cruz, California. At night, four strangers break into Adelaide's childhood home. The family is shocked to find out that the intruders look like them.",
     },
   }, // Хорроры
+  coverStories: {
+    tateMcrae: {
+      total: 10,
+      paired: [4, 5],
+      horizontal: [7, 9],
+    },
+    travisScott: {
+      total: 8,
+      paired: [4, 5],
+      horizontal: [7],
+    },
+    steveLacy: {
+      total: 10,
+      paired: [2, 3, 5, 6],
+    },
+    addisonRae: {
+      total: 12,
+      paired: [3, 4, 8, 9],
+      horizontal: [6],
+    },
+  }, // Фотосессии
 };

@@ -5,36 +5,159 @@ const initBodyElements = () => ({
   navigation: document.querySelector(".nav-list"),
   title: document.querySelector(".article-title"),
   titleCount: document.querySelector(".article-title .count"),
-  authorSections: document.querySelectorAll(".author-name"),
-  authorWebsitesList: document.querySelector(".author .nav-list"),
+  authorName: document.querySelector(".author-name"),
+  time: document.querySelector("time"),
   headerImages: document.querySelector(".featured-media .figure"),
   headerImagesCaption: document.querySelector(".featured-media .figcaption"),
   gallery: document.querySelector(".gallery"),
   slideTemplate: document.getElementById("slide-template"),
+  lastArticlesTemplate: document.getElementById("last-articles-template"),
 }); // Элементы тела страницы
-const getSectionContext = (section, data, change) => {
-  const basicLink = `https://shoneal.github.io/rollingstone-best-${section}/images/`;
+const getSectionContext = (link, section, data, change) => {
+  const basicLink = `${link.content}images/`;
   const currentData = data[change(section)];
   const dataLength = Object.keys(currentData).length;
 
   return { basicLink, currentData, dataLength };
 }; // Главная ссылка, данные по имени секции и длина объекта
-const renderAuthorLinks = (allLinks, currentUrl, container) => {
-  Object.entries(allLinks).forEach(([name, url]) => {
-    if (url === currentUrl.content) return;
+const createResponsiveImage = (
+  link,
+  key,
+  folderType,
+  baseSize,
+  sizes,
+  useSlug = true,
+) => {
+  const src = getImagePath(link, key, `${folderType}/${baseSize}`, useSlug);
 
-    const link = Object.assign(document.createElement("a"), {
-      textContent: name,
-      href: url,
-      target: "_blank",
-      rel: "noopener noreferrer",
+  const srcset = sizes
+    .map(
+      (size) =>
+        `${getImagePath(link, key, `${folderType}/${size}`, useSlug)} ${size}w`,
+    )
+    .join(", ");
+
+  return { src, srcset };
+}; // Создание src и srcset для изображений с адаптивными размерами
+const initializeHeaderImages = (data, container, caption, config = {}) => {
+  const {
+    getKey = (item, key) => key,
+    getAuthor = (item) => item.author,
+    filterFn = () => true,
+    captionFormatter = (authors) => authors.join(", "),
+  } = config;
+
+  const filtredKeys = Object.entries(data)
+    .filter(([key, item]) => filterFn(item, key))
+    .map(([key]) => key);
+
+  const randomElements = [];
+  while (randomElements.length < 3) {
+    const key = filtredKeys[Math.floor(Math.random() * filtredKeys.length)];
+    if (!randomElements.includes(key)) randomElements.push(key);
+  }
+
+  let loadedCount = 0;
+  const onImageLoad = () =>
+    ++loadedCount === randomElements.length && (container.style.opacity = "1");
+
+  const fragment = document.createDocumentFragment();
+
+  for (const key of randomElements) {
+    const item = data[key];
+    const imageKey = getKey(item, key);
+    const author = getAuthor(item, key);
+
+    const img = Object.assign(document.createElement("img"), {
+      src: getImagePath(basicLink, author, "header/desktop", true),
+      srcset: `${getImagePath(
+        basicLink,
+        author,
+        "header/mobile",
+        true,
+      )} 300w, ${getImagePath(
+        basicLink,
+        author,
+        "header/desktop",
+        true,
+      )} 2400w`,
+      sizes: "100vw",
+      alt: author,
+      onload: onImageLoad,
     });
 
-    const item = document.createElement("li");
-    item.appendChild(link);
-    container.appendChild(item);
-  });
-}; // Создание ссылок в навигацию автора
+    const wrapper = document.createElement("div");
+    wrapper.appendChild(img);
+    fragment.appendChild(wrapper);
+  }
+
+  container.appendChild(fragment);
+
+  const authors = randomElements.map((key) => getAuthor(data[key], key));
+  caption.textContent += captionFormatter(authors);
+}; // Создание картинки в шапке
+const renderLastArticlesAndDate = (
+  primaryData,
+  secondaryData,
+  currentUrl,
+  count,
+  template,
+  className,
+  position,
+  date,
+) => {
+  const prepareList = (obj) =>
+    Object.entries(obj)
+      .filter(([_, { link }]) => link !== currentUrl.content)
+      .map(([name, data]) => ({ name, ...data }))
+      .sort((a, b) => new Date(b.published) - new Date(a.published));
+
+  const mainItems = prepareList(primaryData);
+  const backupItems = prepareList(secondaryData);
+
+  let items = [...mainItems];
+  if (items.length < count) {
+    items.push(...backupItems.slice(0, count - items.length));
+  }
+  items = items.slice(0, count);
+
+  const baseCard = template.content.querySelector(".card");
+  const wrapper = document.createElement("div");
+  wrapper.appendChild(template.content.cloneNode(true));
+  const container = wrapper.querySelector(".cards");
+
+  const currentCount = container.children.length;
+  for (let i = currentCount; i < count; i++) {
+    container.appendChild(baseCard.cloneNode(true));
+  }
+
+  const cards = container.querySelectorAll(".card");
+  for (let i = 0; i < items.length; i++) {
+    cards[i].querySelector("a").href = items[i].link;
+    cards[i].querySelector("img").src =
+      `${items[i].link}images/twitter-image.jpg`;
+    cards[i].querySelector("h3").textContent = items[i].name;
+  }
+
+  const targets = document.querySelectorAll(`.${className}`);
+  const target =
+    position === "first" ? targets[0] : targets[targets.length - 1];
+  target.insertAdjacentElement("afterend", wrapper);
+
+  const currentPage =
+    Object.values(primaryData).find((l) => l.link === currentUrl.content) ||
+    Object.values(secondaryData).find((l) => l.link === currentUrl.content);
+
+  if (currentPage?.published) {
+    const d = new Date(currentPage.published);
+    date.datetime = d.toISOString().replace("Z", "-0400");
+    date.textContent = d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+}; // Создание последних ссылок автора и времени публикации страницы
 const createNavigation = (dataLength, container) => {
   const blocks = Array.from({ length: Math.ceil(dataLength / 5) }, (_, i) => {
     const start = i * 5 + 1;
@@ -106,16 +229,35 @@ const handleNavigationClick = (e) => {
   if (targetSlide) targetSlide.scrollIntoView();
 }; // Клики по навигации
 const initApp = (
-  { titleCount, authorSections, author, url, authorWebsitesList, navigation },
+  {
+    titleCount,
+    authorName,
+    author,
+    url,
+    lastArticlesTemplate,
+    time,
+    navigation,
+  },
   dataLength,
-  renderAuthorLinks,
-  allLinks,
+  renderLastArticlesAndDate,
+  coversLinks,
+  listsLinks,
   createNavigation,
   updateActiveLink,
 ) => {
   titleCount.textContent = dataLength; // Обновление числа в заголовке
-  authorSections.forEach((el) => (el.textContent = author.content)); // Имя автора везде в HTML
-  renderAuthorLinks(allLinks, url, authorWebsitesList); // Добавление ссылок в навигацию автора
+  authorName.textContent = author.content; // Имя автора в HTML
+
+  renderLastArticlesAndDate(
+    listsLinks,
+    coversLinks,
+    url,
+    4,
+    lastArticlesTemplate,
+    "slide",
+    "last",
+    time,
+  ); // Добавление последних ссылок автора и времени публикации страницы
   createNavigation(dataLength, navigation); // Создание навигации
   updateActiveLink(navigation); // Обновление навигации
 }; // Функция общей инициализации
@@ -123,7 +265,9 @@ const initApp = (
 export {
   initBodyElements,
   getSectionContext,
-  renderAuthorLinks,
+  createResponsiveImage,
+  initializeHeaderImages,
+  renderLastArticlesAndDate,
   createNavigation,
   updateActiveLink,
   handleNavigationClick,

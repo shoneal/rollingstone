@@ -39,8 +39,13 @@ const showImage = (img) => {
     img.addEventListener("error", onLoadOrError, { once: true });
   }
 }; // Функция для настройки загрузки изображения
-const getImagePath = (link, folder, title) => {
-  return `${link}${folder}/${textToSlug(title)}.jpg`;
+const getImagePath = (link, name, folder, useSlug = false) => {
+  const transformedName = useSlug ? textToSlug(name) : name;
+
+  if (folder) {
+    return `${link}${folder}/${transformedName}.jpg`;
+  }
+  return `${link}${transformedName}.jpg`;
 }; // Путь к изображению
 const debounce = (func, delay) => {
   let timeout;
