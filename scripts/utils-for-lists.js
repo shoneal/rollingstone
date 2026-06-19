@@ -39,7 +39,7 @@ const createResponsiveImage = (
 
   return { src, srcset };
 }; // Создание src и srcset для изображений с адаптивными размерами
-const initializeHeaderImages = (data, container, caption, config = {}) => {
+const initializeHeaderImages = (link, data, container, caption, config = {}) => {
   const {
     getKey = (item, key) => key,
     getAuthor = (item) => item.author,
@@ -69,14 +69,14 @@ const initializeHeaderImages = (data, container, caption, config = {}) => {
     const author = getAuthor(item, key);
 
     const img = Object.assign(document.createElement("img"), {
-      src: getImagePath(basicLink, author, "header/desktop", true),
+      src: getImagePath(link, author, "header/desktop", true),
       srcset: `${getImagePath(
-        basicLink,
+        link,
         author,
         "header/mobile",
         true,
       )} 300w, ${getImagePath(
-        basicLink,
+        link,
         author,
         "header/desktop",
         true,
