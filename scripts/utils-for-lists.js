@@ -21,6 +21,7 @@ const getSectionContext = (link, section, data, change) => {
   return { basicLink, currentData, dataLength };
 }; // Главная ссылка, данные по имени секции и длина объекта
 const createResponsiveImage = (
+getImagePath,
   link,
   key,
   folderType,
