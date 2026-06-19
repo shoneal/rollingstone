@@ -135,7 +135,7 @@ const renderLastArticlesAndDate = (
   for (let i = 0; i < items.length; i++) {
     cards[i].querySelector("a").href = items[i].link;
     cards[i].querySelector("img").src =
-      `${items[i].link}images/twitter-image.jpg`;
+      `${items[i].link}images/twitter-image-225.jpg`;
     cards[i].querySelector("h3").textContent = items[i].name;
   }
 
