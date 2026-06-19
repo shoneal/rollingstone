@@ -21,7 +21,7 @@ const getSectionContext = (link, section, data, change) => {
   return { basicLink, currentData, dataLength };
 }; // Главная ссылка, данные по имени секции и длина объекта
 const createResponsiveImage = (
-getImagePath,
+  getImagePath,
   link,
   key,
   folderType,
@@ -40,7 +40,14 @@ getImagePath,
 
   return { src, srcset };
 }; // Создание src и srcset для изображений с адаптивными размерами
-const initializeHeaderImages = (getImagePath, link, data, container, caption, config = {}) => {
+const initializeHeaderImages = (
+  getImagePath,
+  link,
+  data,
+  container,
+  caption,
+  config = {},
+) => {
   const {
     getKey = (item, key) => key,
     getAuthor = (item) => item.author,
@@ -76,12 +83,7 @@ const initializeHeaderImages = (getImagePath, link, data, container, caption, co
         author,
         "header/mobile",
         true,
-      )} 300w, ${getImagePath(
-        link,
-        author,
-        "header/desktop",
-        true,
-      )} 2400w`,
+      )} 300w, ${getImagePath(link, author, "header/desktop", true)} 2400w`,
       sizes: "100vw",
       alt: author,
       onload: onImageLoad,
