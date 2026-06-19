@@ -16,6 +16,7 @@ const getSectionContext = (link, section, data, change) => {
   return { basicLink, currentData };
 }; // Главная ссылка и данные по имени секции
 const createImage = (
+  getImagePath,
   img,
   link,
   name,
@@ -39,6 +40,7 @@ const createImage = (
   showImage(img);
 }; // Создание изображения
 const createImageBlock = (
+  getImagePath,
   link,
   name,
   altText,
@@ -49,11 +51,11 @@ const createImageBlock = (
   if (className) figure.className = className;
 
   const img = document.createElement("img");
-  createImage(img, link, name, altText, false, folder);
+  createImage(getImagePath, img, link, name, altText, false, folder);
   figure.appendChild(img);
   return figure;
 }; // Создание блока с изображением
-const renderGallery = (data, container, link, altText) => {
+const renderGallery = (getImagePath, data, container, link, altText) => {
   const { total, paired = [], horizontal = [] } = data;
 
   const fragment = document.createDocumentFragment();
@@ -70,8 +72,8 @@ const renderGallery = (data, container, link, altText) => {
       const wrapper = document.createElement("figure");
       wrapper.className = "paired-image";
 
-      wrapper.appendChild(createImageBlock(link, i, altText));
-      wrapper.appendChild(createImageBlock(link, pairSecond, altText));
+      wrapper.appendChild(createImageBlock(getImagePath, link, i, altText));
+      wrapper.appendChild(createImageBlock(getImagePath, link, pairSecond, altText));
       fragment.appendChild(wrapper);
 
       i++;
