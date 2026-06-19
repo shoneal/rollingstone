@@ -39,7 +39,7 @@ const createResponsiveImage = (
 
   return { src, srcset };
 }; // Создание src и srcset для изображений с адаптивными размерами
-const initializeHeaderImages = (link, data, container, caption, config = {}) => {
+const initializeHeaderImages = (getImagePath, link, data, container, caption, config = {}) => {
   const {
     getKey = (item, key) => key,
     getAuthor = (item) => item.author,
