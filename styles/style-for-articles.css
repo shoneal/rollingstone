@@ -186,6 +186,10 @@ time {
     padding: 1rem 0;
   }
 
+  .last-articles .card:not(:first-child) {
+    border-left-width: 0 !important;
+  }
+
   .last-articles a {
     display: flex;
   }
