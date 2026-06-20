@@ -53,9 +53,12 @@ const createImageBlock = (
   const figure = document.createElement("figure");
   if (className) figure.className = className;
 
+  const div = document.createElement("div");
+
   const img = document.createElement("img");
   createImage(getImagePath, showImage, img, link, name, altText, false, folder);
-  figure.appendChild(img);
+  div.appendChild(img);
+  figure.appendChild(div);
   return figure;
 }; // Создание блока с изображением
 const renderGallery = (
@@ -77,16 +80,26 @@ const renderGallery = (
 
   for (let i = 1; i <= total; i++) {
     const pairSecond = pairedMap.get(i);
+    const className = horizontalSet.has(i)
+      ? "horizontal-image"
+      : "vertical-image";
 
     if (pairSecond !== undefined) {
-      const wrapper = document.createElement("figure");
-      wrapper.className = "paired-image";
+      const wrapper = document.createElement("div");
+      wrapper.className = "paired-images";
 
       wrapper.appendChild(
-        createImageBlock(getImagePath, showImage, link, i, altText),
+        createImageBlock(getImagePath, showImage, link, i, altText, className),
       );
       wrapper.appendChild(
-        createImageBlock(getImagePath, showImage, link, pairSecond, altText),
+        createImageBlock(
+          getImagePath,
+          showImage,
+          link,
+          pairSecond,
+          altText,
+          className,
+        ),
       );
       fragment.appendChild(wrapper);
 
@@ -94,7 +107,6 @@ const renderGallery = (
       continue;
     }
 
-    const className = horizontalSet.has(i) ? "horizontal-image" : "";
     fragment.appendChild(
       createImageBlock(getImagePath, showImage, link, i, altText, className),
     );

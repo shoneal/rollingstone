@@ -1,0 +1,189 @@
+.card-image {
+  position: relative;
+  width: 100%;
+  border: 2px solid var(--border);
+  padding-bottom: 56.25%;
+}
+
+.card-image-marker {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.card-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 51.875rem;
+  margin: 0 auto;
+  padding: 0.75rem 2.5rem 0.25rem;
+}
+
+.article-kicker {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cover-story-kicker {
+  height: 2.625rem;
+  margin-top: 2.375rem;
+  margin-bottom: 1rem;
+}
+
+.cover-story-kicker svg {
+  height: auto;
+}
+
+.article-title {
+  padding-bottom: 0.25rem;
+  font-weight: 900;
+  font-size: 5.5rem;
+  line-height: 4.75rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.article-content div:has(.last-articles) {
+  width: 100%;
+  max-width: 51.875rem;
+  margin-inline: auto;
+  padding: 0 2.5rem;
+}
+
+.article-content figure {
+  margin-block: 1.75rem;
+}
+
+.paired-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 75vw;
+  margin-right: calc(50% - 37.5vw);
+  margin-left: calc(50% - 37.5vw);
+  margin-block: 1.875rem;
+  grid-gap: 1.75rem;
+}
+
+.vertical-image {
+  width: 100%;
+  max-width: 51.875rem;
+  margin-inline: auto;
+  padding: 0 2.5rem;
+}
+
+.horizontal-image {
+  width: 100%;
+  max-width: 72.5rem;
+  margin-inline: auto;
+}
+
+.paired-images .vertical-image {
+  margin: 0;
+  padding: 0;
+}
+
+.vertical-image div {
+  position: relative;
+  padding-bottom: calc((1024 / 788) * 100%);
+}
+
+.paired-images .vertical-image div {
+  max-width: 772px;
+  padding-bottom: calc((1024 / 772) * 100%);
+}
+
+.horizontal-image div {
+  position: relative;
+  padding-bottom: calc((675 / 1024) * 100%);
+}
+
+figure img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-content figure img {
+  border: 2px solid var(--border);
+}
+
+@media screen and (max-width: 1000px) {
+  main header {
+    max-width: 40rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .cover-story-kicker {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .article-title {
+    font-size: 3.875rem;
+    line-height: 3.25rem;
+  }
+
+  .article-content div:has(.last-articles) {
+    max-width: 40rem;
+    padding: 0 1.25rem;
+  }
+
+  .paired-images {
+    margin-block: 2.5rem;
+  }
+
+  .vertical-image {
+    max-width: 40rem;
+    padding: 0 1.25rem;
+  }
+
+  .horizontal-image {
+    max-width: 40rem;
+    padding: 0 1.25rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-image {
+    margin-top: 1rem;
+  }
+
+  main header {
+    padding: 1.5rem 1.25rem 0.5rem;
+  }
+
+  .cover-story-kicker {
+    display: flex;
+    align-items: center;
+    height: 2.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .cover-story-kicker svg {
+    transform: scale(0.7);
+  }
+
+  .paired-images {
+    grid-template-columns: 1fr;
+    max-width: 100vw;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+  }
+
+  .paired-images .vertical-image {
+    min-width: 100%;
+  }
+}
