@@ -3,6 +3,7 @@ const initBodyElements = () => ({
   author: document.querySelector('meta[name="author"]'),
   person: document.querySelector('meta[property="og:title"]'),
   header: document.querySelector("body > header"),
+  cardMarker: document.querySelector(".card-image-marker"),
   cardImage: document.querySelector(".card-image img"),
   authorName: document.querySelector(".author-name"),
   time: document.querySelector("time"),
