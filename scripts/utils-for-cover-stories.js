@@ -17,6 +17,7 @@ const getSectionContext = (link, section, data, change) => {
 }; // Главная ссылка и данные по имени секции
 const createImage = (
   getImagePath,
+  showImage,
   img,
   link,
   name,
@@ -41,6 +42,7 @@ const createImage = (
 }; // Создание изображения
 const createImageBlock = (
   getImagePath,
+  showImage,
   link,
   name,
   altText,
@@ -51,11 +53,18 @@ const createImageBlock = (
   if (className) figure.className = className;
 
   const img = document.createElement("img");
-  createImage(getImagePath, img, link, name, altText, false, folder);
+  createImage(getImagePath, showImage, img, link, name, altText, false, folder);
   figure.appendChild(img);
   return figure;
 }; // Создание блока с изображением
-const renderGallery = (getImagePath, data, container, link, altText) => {
+const renderGallery = (
+  getImagePath,
+  showImage,
+  data,
+  container,
+  link,
+  altText,
+) => {
   const { total, paired = [], horizontal = [] } = data;
 
   const fragment = document.createDocumentFragment();
@@ -72,8 +81,12 @@ const renderGallery = (getImagePath, data, container, link, altText) => {
       const wrapper = document.createElement("figure");
       wrapper.className = "paired-image";
 
-      wrapper.appendChild(createImageBlock(getImagePath, link, i, altText));
-      wrapper.appendChild(createImageBlock(getImagePath, link, pairSecond, altText));
+      wrapper.appendChild(
+        createImageBlock(getImagePath, showImage, link, i, altText),
+      );
+      wrapper.appendChild(
+        createImageBlock(getImagePath, showImage, link, pairSecond, altText),
+      );
       fragment.appendChild(wrapper);
 
       i++;
@@ -81,7 +94,9 @@ const renderGallery = (getImagePath, data, container, link, altText) => {
     }
 
     const className = horizontalSet.has(i) ? "horizontal-image" : "";
-    fragment.appendChild(createImageBlock(link, i, altText, className));
+    fragment.appendChild(
+      createImageBlock(getImagePath, showImage, link, i, altText, className),
+    );
   }
 
   container.appendChild(fragment);
