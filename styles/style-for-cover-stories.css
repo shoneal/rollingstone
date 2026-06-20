@@ -37,6 +37,7 @@ main header {
 }
 
 .cover-story-kicker {
+  display: contents;
   height: 2.625rem;
   margin-top: 2.375rem;
   margin-bottom: 1rem;
