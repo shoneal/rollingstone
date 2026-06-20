@@ -27,6 +27,7 @@ main header {
   max-width: 51.875rem;
   margin: 0 auto;
   padding: 0.75rem 2.5rem 0.25rem;
+  text-align: center;
 }
 
 .article-kicker {
@@ -48,12 +49,19 @@ main header {
 }
 
 .article-title {
-  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
   font-weight: 900;
   font-size: 5.5rem;
   line-height: 4.75rem;
-  text-align: center;
   text-transform: uppercase;
+}
+
+.article-wrapper .author {
+  margin-top: 20px;
+}
+
+.article-wrapper time {
+  margin: 0.5rem 0 0 !important;
 }
 
 .article-content div:has(.last-articles) {
