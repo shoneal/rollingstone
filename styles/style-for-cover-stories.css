@@ -68,10 +68,9 @@ main header {
   margin: 0.5rem 0 0 !important;
 }
 
-.article-content .last-articles {
-  width: 100%;
-  max-width: calc(51.875rem - 2.5rem * 2);
-  margin-inline: auto;
+.article-content div:has(.last-articles) {
+  max-width: 51.875rem;
+  margin: 0 auto;
 }
 
 .article-content figure {
@@ -148,8 +147,9 @@ figure img {
     line-height: 3.25rem;
   }
 
-  .article-content .last-articles {
-    max-width: calc(40rem - 1.25rem * 2);
+  .article-content div:has(.last-articles) {
+    max-width: 40rem;
+    padding: 0 1.25rem;
   }
 
   .paired-images {
