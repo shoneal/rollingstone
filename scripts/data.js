@@ -550,23 +550,49 @@ export const data = {
   }, // Хорроры
   coverStories: {
     tateMcrae: {
+      video: true,
       total: 10,
       paired: [4, 5],
       horizontal: [7, 9],
     },
     travisScott: {
+      video: true,
       total: 8,
       paired: [4, 5],
       horizontal: [7],
     },
     steveLacy: {
+      video: true,
       total: 10,
       paired: [2, 3, 5, 6],
     },
     addisonRae: {
-      total: 12,
-      paired: [3, 4, 8, 9],
-      horizontal: [6],
+      video: true,
+      total: 13,
+      paired: [4, 5, 9, 10],
+      horizontal: [2, 7],
+    },
+    timotheeChalamet: {
+      video: true,
+      total: 13,
+      paired: [3, 4, 7, 8],
+      horizontal: [2, 6, 10],
+    },
+    duaLipa: {
+      video: true,
+      total: 9,
+      paired: [3, 4],
+      horizontal: [5],
+      gif: [7],
+    },
+    michaelBJordan: {
+      row: true,
+      total: 5,
+      horizontal: [2, 3, 5],
+    },
+    selenaGomez: {
+      total: 5,
+      horizontal: [2, 4],
     },
   }, // Фотосессии
 };

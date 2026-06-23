@@ -1,11 +1,9 @@
-.card-image {
+.pagetop {
   position: relative;
-  width: 100%;
   border: 2px solid var(--border);
-  padding-bottom: 56.25%;
 }
 
-.card-image-marker {
+.pagetop-marker {
   position: absolute;
   top: 50%;
   left: 0;
@@ -13,7 +11,13 @@
   height: 1px;
 }
 
-.card-image img {
+.video-card {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.video-card video {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -49,6 +53,7 @@ main header {
 
 .article-title {
   margin-bottom: 0.25rem;
+  font-family: "Rolling Stone Slab", serif;
   font-weight: 900;
   font-size: 5.5rem;
   line-height: 4.75rem;
@@ -63,11 +68,10 @@ main header {
   margin: 0.5rem 0 0 !important;
 }
 
-.article-content div:has(.last-articles) {
+.article-content .last-articles {
   width: 100%;
-  max-width: 51.875rem;
+  max-width: calc(51.875rem - 2.5rem * 2);
   margin-inline: auto;
-  padding: 0 2.5rem;
 }
 
 .article-content figure {
@@ -144,9 +148,8 @@ figure img {
     line-height: 3.25rem;
   }
 
-  .article-content div:has(.last-articles) {
-    max-width: 40rem;
-    padding: 0 1.25rem;
+  .article-content .last-articles {
+    max-width: calc(40rem - 1.25rem * 2);
   }
 
   .paired-images {
@@ -165,7 +168,7 @@ figure img {
 }
 
 @media screen and (max-width: 768px) {
-  .card-image {
+  .pagetop {
     margin-top: 1rem;
   }
 

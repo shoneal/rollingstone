@@ -3,12 +3,11 @@ const initBodyElements = () => ({
   author: document.querySelector('meta[name="author"]'),
   person: document.querySelector('meta[property="og:title"]'),
   header: document.querySelector("body > header"),
-  cardMarker: document.querySelector(".card-image-marker"),
-  cardImage: document.querySelector(".card-image img"),
+  pageTop: document.querySelector(".pagetop"),
+  pageTopMarker: document.querySelector(".pagetop-marker"),
   authorName: document.querySelector(".author-name"),
   time: document.querySelector("time"),
   content: document.querySelector(".article-content"),
-  lastArticlesTemplate: document.getElementById("last-articles-template"),
 }); // Элементы тела страницы
 const getSectionContext = (link, section, data, change) => {
   const basicLink = `${link.content}images/`;
@@ -16,16 +15,23 @@ const getSectionContext = (link, section, data, change) => {
 
   return { basicLink, currentData };
 }; // Главная ссылка и данные по имени секции
-const createImage = (
+const createImageBlock = (
   getImagePath,
   showImage,
-  img,
   link,
   name,
   altText,
   useSrcset = false,
+  gif = false,
   folder = "",
+  className = "",
 ) => {
+  const figure = document.createElement("figure");
+  if (className) figure.className = className;
+
+  const div = document.createElement("div");
+
+  const img = document.createElement("img");
   img.style.opacity = "0";
 
   if (useSrcset) {
@@ -36,43 +42,67 @@ const createImage = (
     )} 910w, ${getImagePath(link, name, folder)} 2400w`;
   }
 
-  img.src = getImagePath(link, name, folder);
+  let src = getImagePath(link, name, folder);
+  if (gif) {
+    src = src.replace(/\.jpg$/, ".gif");
+  }
+  img.src = src;
   img.alt = altText;
 
   showImage(img);
-}; // Создание изображения
-const createImageBlock = (
-  getImagePath,
-  showImage,
-  link,
-  name,
-  altText,
-  className = "",
-  folder = "photo",
-) => {
-  const figure = document.createElement("figure");
-  if (className) figure.className = className;
-
-  const div = document.createElement("div");
-
-  const img = document.createElement("img");
-  createImage(getImagePath, showImage, img, link, name, altText, false, folder);
   div.appendChild(img);
   figure.appendChild(div);
   return figure;
 }; // Создание блока с изображением
+const initializePageTop = (
+  getImagePath,
+  showImage,
+  link,
+  altText,
+  data,
+  container,
+) => {
+  const useSrcset = !data.row;
+
+  if (data.video) {
+    const videoWrapper = document.createElement("div");
+    videoWrapper.className = "video-card";
+    const video = document.createElement("video");
+    video.poster = `${link}images.card-910.jpg`;
+    video.src = `${link}video.video.mp4`;
+    video.preload = "auto";
+    video.loop = video.muted = video.autoplay = video.playsInline = true;
+    videoWrapper.appendChild(video);
+    container.appendChild(videoWrapper);
+  } else {
+    container.appendChild(
+      createImageBlock(
+        getImagePath,
+        showImage,
+        link,
+        "card",
+        altText,
+        useSrcset,
+        false,
+        "",
+        "image-card",
+      ),
+    );
+  }
+}; // Создание видео/картинки в шапке
 const renderGallery = (
   getImagePath,
   showImage,
-  data,
-  container,
   link,
   altText,
+  data,
+  container,
 ) => {
-  const { total, paired = [], horizontal = [] } = data;
+  const { total, paired = [], horizontal = [], gif = [] } = data;
 
   const fragment = document.createDocumentFragment();
   const horizontalSet = new Set(horizontal);
+  const gifSet = new Set(gif);
   const pairedMap = new Map();
   for (let i = 0; i < paired.length; i += 2) {
     pairedMap.set(paired[i], paired[i + 1]);
@@ -89,7 +119,17 @@ const renderGallery = (
       wrapper.className = "paired-images";
 
       wrapper.appendChild(
-        createImageBlock(getImagePath, showImage, link, i, altText, className),
+        createImageBlock(
+          getImagePath,
+          showImage,
+          link,
+          i,
+          altText,
+          false,
+          false,
+          "photo",
+          className,
+        ),
       );
       wrapper.appendChild(
         createImageBlock(
@@ -98,6 +138,9 @@ const renderGallery = (
           link,
           pairSecond,
           altText,
+          false,
+          false,
+          "photo",
           className,
         ),
       );
@@ -107,101 +150,30 @@ const renderGallery = (
       continue;
     }
 
+    const isGif = gifSet.has(i);
+
     fragment.appendChild(
-      createImageBlock(getImagePath, showImage, link, i, altText, className),
+      createImageBlock(
+        getImagePath,
+        showImage,
+        link,
+        i,
+        altText,
+        false,
+        isGif,
+        "photo",
+        className,
+      ),
     );
   }
 
   container.appendChild(fragment);
 }; // Вывод элементов в структуру HTML
-const renderLastArticlesAndDate = (
-  primaryData,
-  secondaryData,
-  currentUrl,
-  count,
-  template,
-  className,
-  position,
-  date,
-) => {
-  const prepareList = (obj) =>
-    Object.entries(obj)
-      .filter(([_, { link }]) => link !== currentUrl.content)
-      .map(([name, data]) => ({ name, ...data }))
-      .sort((a, b) => new Date(b.published) - new Date(a.published));
-
-  const mainItems = prepareList(primaryData);
-  const backupItems = prepareList(secondaryData);
-
-  let items = [...mainItems];
-  if (items.length < count) {
-    items.push(...backupItems.slice(0, count - items.length));
-  }
-  items = items.slice(0, count);
-
-  const baseCard = template.content.querySelector(".card");
-  const wrapper = document.createElement("div");
-  wrapper.appendChild(template.content.cloneNode(true));
-  const container = wrapper.querySelector(".cards");
-
-  const currentCount = container.children.length;
-  for (let i = currentCount; i < count; i++) {
-    container.appendChild(baseCard.cloneNode(true));
-  }
-
-  const cards = container.querySelectorAll(".card");
-  for (let i = 0; i < items.length; i++) {
-    cards[i].querySelector("a").href = items[i].link;
-    cards[i].querySelector("img").src =
-      `${items[i].link}images/twitter-image.jpg`;
-    cards[i].querySelector("h3").textContent = items[i].name;
-  }
-
-  const targets = document.querySelectorAll(`.${className}`);
-  const target =
-    position === "first" ? targets[0] : targets[targets.length - 1];
-  target.insertAdjacentElement("afterend", wrapper);
-
-  const currentPage =
-    Object.values(primaryData).find((l) => l.link === currentUrl.content) ||
-    Object.values(secondaryData).find((l) => l.link === currentUrl.content);
-
-  if (currentPage?.published) {
-    const d = new Date(currentPage.published);
-    date.datetime = d.toISOString().replace("Z", "-0400");
-    date.textContent = d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-}; // Создание последних ссылок автора и времени публикации страницы
-const initApp = (
-  { authorName, author, url, lastArticlesTemplate, time },
-  renderLastArticlesAndDate,
-  coversLinks,
-  listsLinks,
-) => {
-  authorName.textContent = author.content; // Имя автора в HTML
-
-  renderLastArticlesAndDate(
-    coversLinks,
-    listsLinks,
-    url,
-    4,
-    lastArticlesTemplate,
-    "article-content figure",
-    "first",
-    time,
-  ); // Добавление последних ссылок автора и времени публикации страницы
-}; // Функция общей инициализации
 
 export {
   initBodyElements,
   getSectionContext,
-  createImage,
   createImageBlock,
+  initializePageTop,
   renderGallery,
-  renderLastArticlesAndDate,
-  initApp,
 };

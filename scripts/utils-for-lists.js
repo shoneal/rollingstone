@@ -11,7 +11,6 @@ const initBodyElements = () => ({
   headerImagesCaption: document.querySelector(".featured-media .figcaption"),
   gallery: document.querySelector(".gallery"),
   slideTemplate: document.getElementById("slide-template"),
-  lastArticlesTemplate: document.getElementById("last-articles-template"),
 }); // Элементы тела страницы
 const getSectionContext = (link, section, data, change) => {
   const basicLink = `${link.content}images/`;
@@ -99,68 +98,6 @@ const initializeHeaderImages = (
   const authors = randomElements.map((key) => getAuthor(data[key], key));
   caption.textContent += captionFormatter(authors);
 }; // Создание картинки в шапке
-const renderLastArticlesAndDate = (
-  primaryData,
-  secondaryData,
-  currentUrl,
-  count,
-  template,
-  className,
-  position,
-  date,
-) => {
-  const prepareList = (obj) =>
-    Object.entries(obj)
-      .filter(([_, { link }]) => link !== currentUrl.content)
-      .map(([name, data]) => ({ name, ...data }))
-      .sort((a, b) => new Date(b.published) - new Date(a.published));
-
-  const mainItems = prepareList(primaryData);
-  const backupItems = prepareList(secondaryData);
-
-  let items = [...mainItems];
-  if (items.length < count) {
-    items.push(...backupItems.slice(0, count - items.length));
-  }
-  items = items.slice(0, count);
-
-  const baseCard = template.content.querySelector(".card");
-  const wrapper = document.createElement("div");
-  wrapper.appendChild(template.content.cloneNode(true));
-  const container = wrapper.querySelector(".cards");
-
-  const currentCount = container.children.length;
-  for (let i = currentCount; i < count; i++) {
-    container.appendChild(baseCard.cloneNode(true));
-  }
-
-  const cards = container.querySelectorAll(".card");
-  for (let i = 0; i < items.length; i++) {
-    cards[i].querySelector("a").href = items[i].link;
-    cards[i].querySelector("img").src =
-      `${items[i].link}images/twitter-image-225.jpg`;
-    cards[i].querySelector("h3").textContent = items[i].name;
-  }
-
-  const targets = document.querySelectorAll(`.${className}`);
-  const target =
-    position === "first" ? targets[0] : targets[targets.length - 1];
-  target.insertAdjacentElement("afterend", wrapper);
-
-  const currentPage =
-    Object.values(primaryData).find((l) => l.link === currentUrl.content) ||
-    Object.values(secondaryData).find((l) => l.link === currentUrl.content);
-
-  if (currentPage?.published) {
-    const d = new Date(currentPage.published);
-    date.datetime = d.toISOString().replace("Z", "-0400");
-    date.textContent = d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-}; // Создание последних ссылок автора и времени публикации страницы
 const createNavigation = (dataLength, container) => {
   const blocks = Array.from({ length: Math.ceil(dataLength / 5) }, (_, i) => {
     const start = i * 5 + 1;
@@ -232,17 +169,8 @@ const handleNavigationClick = (e) => {
   if (targetSlide) targetSlide.scrollIntoView();
 }; // Клики по навигации
 const initApp = (
-  {
-    titleCount,
-    authorName,
-    author,
-    url,
-    lastArticlesTemplate,
-    time,
-    navigation,
-  },
+  { titleCount, authorName, author, navigation },
   dataLength,
-  renderLastArticlesAndDate,
   coversLinks,
   listsLinks,
   createNavigation,
@@ -250,17 +178,6 @@ const initApp = (
 ) => {
   titleCount.textContent = dataLength; // Обновление числа в заголовке
   authorName.textContent = author.content; // Имя автора в HTML
-
-  renderLastArticlesAndDate(
-    listsLinks,
-    coversLinks,
-    url,
-    4,
-    lastArticlesTemplate,
-    "slide",
-    "last",
-    time,
-  ); // Добавление последних ссылок автора и времени публикации страницы
   createNavigation(dataLength, navigation); // Создание навигации
   updateActiveLink(navigation); // Обновление навигации
 }; // Функция общей инициализации
@@ -270,7 +187,6 @@ export {
   getSectionContext,
   createResponsiveImage,
   initializeHeaderImages,
-  renderLastArticlesAndDate,
   createNavigation,
   updateActiveLink,
   handleNavigationClick,

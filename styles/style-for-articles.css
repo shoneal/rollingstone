@@ -92,12 +92,9 @@ time {
   border-left: 1px solid var(--border);
 }
 
-.last-articles .card-image-wrapper {
-  border: 2px solid var(--border);
-}
-
 .card-image-wrapper div {
   position: relative;
+  border: 2px solid var(--border);
   padding-bottom: 66.6666666667%;
 }
 
