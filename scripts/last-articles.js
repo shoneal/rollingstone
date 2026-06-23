@@ -33,6 +33,7 @@ const renderLastArticlesAndDate = (
   const backupItems = prepareList(secondaryData);
   const items = [...mainItems, ...backupItems].slice(0, count);
 
+  const sectionWrapper = document.createElement("div");
   const section = document.createElement("section");
   section.className = "last-articles";
 
@@ -71,11 +72,12 @@ const renderLastArticlesAndDate = (
 
   cardsContainer.appendChild(fragment);
   section.appendChild(cardsContainer);
+  sectionWrapper.appendChild(section);
 
   const targets = document.querySelectorAll(`.${className}`);
   const target =
     position === "first" ? targets[0] : targets[targets.length - 1];
-  target.insertAdjacentElement("afterend", section);
+  target.insertAdjacentElement("afterend", sectionWrapper);
 
   const currentPage =
     Object.values(primaryData).find((l) => l.link === currentUrl.content) ||
