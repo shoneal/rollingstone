@@ -1,18 +1,30 @@
- import { data } from 'https://shoneal.github.io/rollingstone/scripts/data.js';
- import { listsLinks, coversLinks } from 'https://shoneal.github.io/rollingstone/scripts/links.js';
- import { changingTheme, switchingStickinessHeader, textToSlug, kebabToCamel, showImage, getImagePath, debounce } from
+import { data } from "https://shoneal.github.io/rollingstone/scripts/data.js";
+import {
+  listsLinks,
+  coversLinks,
+} from "https://shoneal.github.io/rollingstone/scripts/links.js";
+import {
+  changingTheme,
+  switchingStickinessHeader,
+  textToSlug,
+  kebabToCamel,
+  showImage,
+  getImagePath,
+  debounce,
+} from "https://shoneal.github.io/rollingstone/scripts/utils.js";
+
 
 const bodyElements = {
   header: document.querySelector("body > header"),
   cards: document.querySelector(".link-cards"),
-  template: document.getElementById("card-template")
+  template: document.getElementById("card-template"),
 }; // Элементы тела страницы
 const renderLinks = (data1, data2, template, container, showImage) => {
   const items = [...Object.entries(data1), ...Object.entries(data2)]
     .map(([title, data], _, entries) => ({
       title,
       ...data,
-      type: entries === data1 ? "list" : "cover"
+      type: entries === data1 ? "list" : "cover",
     }))
     .sort((a, b) => new Date(b.published) - new Date(a.published));
 
@@ -31,16 +43,16 @@ const renderLinks = (data1, data2, template, container, showImage) => {
       clone.querySelector(".card-image img"),
       clone.querySelector(".article-kicker"),
       clone.querySelector(".title"),
-      clone.querySelector("time")
+      clone.querySelector("time"),
     ];
 
     img.style.opacity = "0";
     img.src = imgPath(item.link, "910");
-    (img.srcset = `${imgPath(item.link, "225")} 225w, ${imgPath(
+    ((img.srcset = `${imgPath(item.link, "225")} 225w, ${imgPath(
       item.link,
-      "910"
+      "910",
     )} 910w`),
-      (img.alt = item.title);
+      (img.alt = item.title));
     showImage(img);
 
     kicker.textContent = item.type === "list" ? "The Lists" : "Cover Story";
@@ -51,7 +63,7 @@ const renderLinks = (data1, data2, template, container, showImage) => {
     time.textContent = date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
-      day: "numeric"
+      day: "numeric",
     });
 
     linkEl.appendChild(clone);
@@ -68,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
     coversLinks,
     bodyElements.template,
     bodyElements.cards,
-    showImage
+    showImage,
   ); // Вывод элементов в структуру HTML
 
   switchingStickinessHeader(
     document.querySelector(".card:first-child"),
-    bodyElements.header
+    bodyElements.header,
   ); // Липкий выезжающий header
 }); // Изначальная инициализация
 let ticking = false; // Задержка для скролла
@@ -82,7 +94,7 @@ window.addEventListener("scroll", () => {
     requestAnimationFrame(() => {
       switchingStickinessHeader(
         document.querySelector(".card:first-child"),
-        bodyElements.header
+        bodyElements.header,
       ); // Липкий выезжающий header
 
       ticking = false;
