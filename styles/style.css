@@ -1,0 +1,165 @@
+body > header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1rem;
+  background-color: var(--color-body);
+}
+
+body > header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  border-top: 2px solid var(--border);
+  padding-block: 0.75rem;
+  transform: translateY(0px);
+  animation: slideDown 0.25s forwards;
+}
+
+.header-link {
+  width: auto;
+  max-width: 37.375rem;
+  background-image: url(https://shoneal.github.io/rollingstone/images/logo-big.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 6.875rem;
+}
+
+header.sticky .header-link {
+  background-image: url(https://shoneal.github.io/rollingstone/images/logo.svg);
+  background-size: 11.5625rem auto;
+}
+
+main {
+  max-width: 78.75rem;
+  margin: 1rem auto 0;
+}
+
+.link-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+}
+
+.link-cards a {
+}
+
+.card {
+  border: 4px solid var(--border);
+}
+
+.card-image {
+  position: relative;
+  border-bottom: 4px solid var(--border);
+  padding-bottom: 66.6667%;
+}
+
+.card-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  position: relative;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.article-kicker {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.25rem 0.375rem;
+  color: white;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  background: var(--brand-primary);
+  transform: translateY(-50%);
+}
+
+.title {
+  margin: 0.75rem 0 0.5rem;
+  font-family: "Rolling Stone Slab", serif;
+  font-weight: 900;
+  font-size: 2.625rem;
+  line-height: 2.25rem;
+  text-transform: uppercase;
+}
+
+time {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 0.22px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-content:hover {
+    color: white;
+    background-color: black;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  body > header.sticky {
+    padding-block: 0.5rem;
+  }
+
+  .header-link {
+    background-size: 100% 11vw;
+  }
+
+  main {
+    padding-inline: 1.5rem;
+  }
+
+  .link-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+  }
+
+  .article-kicker {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .title {
+    font-size: 2.875rem;
+    line-height: 2.375rem;
+  }
+
+  time {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body > header {
+    border-block: 2px solid var(--border);
+    padding: 0.75rem;
+  }
+
+  .header-link {
+    max-width: none;
+    background-image: url(https://shoneal.github.io/rollingstone/images/logo.svg);
+    background-size: auto 2.625rem;
+  }
+
+  header.sticky .header-link {
+    background-size: 8.4375rem auto;
+  }
+
+  main {
+    padding-inline: 0.5625rem;
+  }
+
+  .link-cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -17,9 +17,13 @@ const listsLinks = {
   },
 }; // Сайты с ссылками списков
 const coversLinks = {
+  "Charli XCX — British superstar and cultural phenomenon": {
+    link: "https://shoneal.github.io/rollingstone-cover-story-charli-xcx/",
+    published: "2026-06-18",
+  },
   "Tate McRae — Canadian pop superstar": {
     link: "https://shoneal.github.io/rollingstone-cover-story-tate-mcrae/",
-    published: "2026-06-18",
+    published: "2025-12-11",
   },
   "Travis Scott — rap superstar": {
     link: "https://shoneal.github.io/rollingstone-cover-story-travis-scott/",

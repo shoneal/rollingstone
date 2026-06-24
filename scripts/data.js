@@ -549,6 +549,10 @@ export const data = {
     },
   }, // Хорроры
   coverStories: {
+    charliXCX: {
+      total: 7,
+      horizontal: [3, 6],
+    },
     tateMcrae: {
       video: true,
       total: 10,

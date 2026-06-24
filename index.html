@@ -63,6 +63,7 @@
       as="image"
       href="https://shoneal.github.io/rollingstone/images/twitter-image.png"
     />
+    <meta name="author" content="Jerome Malone" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Rolling Stone – Music, Film and TV" />
     <meta
@@ -75,7 +76,6 @@
       property="og:image"
       content="https://shoneal.github.io/rollingstone/images/twitter-image.png"
     />
-    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Rolling Stone – Music, Film and TV" />
     <meta
@@ -90,8 +90,37 @@
     <link rel="icon" href="./images/favicon.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="./images/icon.png" />
     <link rel="stylesheet" href="./fonts/fonts.css" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/themes.css" />
+    <link rel="stylesheet" href="./styles/animations.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <script type="module" src="./scripts/data.js"></script>
+    <script type="module" src="./scripts/links.js"></script>
+    <script type="module" src="./scripts/utils.js"></script>
     <script type="module" src="./scripts/script.js"></script>
   </head>
+
+  <body>
+    <header>
+      <div class="header-content">
+        <a class="header-link" href="#"></a>
+      </div>
+    </header>
+    <main>
+      <div class="link-cards"></div>
+    </main>
+
+    <template id="card-template">
+      <div class="card">
+        <div class="card-image">
+          <img sizes="100vw" />
+        </div>
+        <div class="card-content">
+          <div class="article-kicker"></div>
+          <h3 class="title"></h3>
+          <time></time>
+        </div>
+      </div>
+    </template>
+  </body>
 </html>
