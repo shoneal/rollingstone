@@ -549,7 +549,7 @@ export const data = {
     },
   }, // Хорроры
   coverStories: {
-    charliXCX: {
+    charliXcx: {
       total: 7,
       horizontal: [3, 6],
     },
