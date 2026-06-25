@@ -65,6 +65,10 @@ const initializePageTop = (
 ) => {
   const useSrcset = !data.row;
 
+  container.classList.toggle("with-video", !!data.video);
+  container.classList.toggle("flex-direction-row", !!data.row);
+  container.classList.toggle("without-video", !data.video && !data.row);
+
   if (data.video) {
     const videoWrapper = document.createElement("div");
     videoWrapper.className = "video-card";
