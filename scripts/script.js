@@ -40,9 +40,17 @@ const prepareItems = (data, globalData) => {
     };
   });
 }; // Подсчет элементов в списках
+const fillTimeData = (time, published) => {
+  const date = new Date(published);
+  time.datetime = date.toISOString().replace("Z", "-0400");
+  time.textContent = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}; // Заполнение данных времени
 const renderLinks = (items, template, container, showImage) => {
   const fragment = document.createDocumentFragment();
-
   const templateContent = template.content;
   const imgPath = (link, size) => `${link}images/card-${size}.jpg`;
 
@@ -50,35 +58,50 @@ const renderLinks = (items, template, container, showImage) => {
     const linkEl = document.createElement("a");
     linkEl.href = item.link;
 
-    const clone = templateContent.cloneNode(true);
+    if (item.type === "covers") {
+      const clone = templateContent.cloneNode(true);
 
-    const [img, kicker, title, time] = [
-      clone.querySelector(".card-image img"),
-      clone.querySelector(".article-kicker"),
-      clone.querySelector(".title"),
-      clone.querySelector("time"),
-    ];
+      const [img, kicker, title, time] = [
+        clone.querySelector(".card-image img"),
+        clone.querySelector(".article-kicker"),
+        clone.querySelector(".title"),
+        clone.querySelector("time"),
+      ];
 
-    img.style.opacity = "0";
-    const path910 = imgPath(item.link, "910");
-    const path225 = imgPath(item.link, "225");
-    img.src = path910;
-    img.srcset = `${path225} 225w, ${path910} 910w`;
-    img.alt = item.displayTitle;
-    showImage(img);
+      img.style.opacity = "0";
+      const path910 = imgPath(item.link, "910");
+      const path225 = imgPath(item.link, "225");
+      img.src = path910;
+      img.srcset = `${path225} 225w, ${path910} 910w`;
+      img.alt = item.displayTitle;
+      showImage(img);
 
-    kicker.textContent = item.type === "lists" ? "The Lists" : "Cover Story";
-    title.textContent = item.displayTitle;
+      kicker.textContent = "Cover Story";
+      title.textContent = item.displayTitle;
 
-    const date = new Date(item.published);
-    time.datetime = date.toISOString().replace("Z", "-0400");
-    time.textContent = date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+      fillTimeData(time, item.published);
 
-    linkEl.appendChild(clone);
+      linkEl.appendChild(clone);
+    } else if (item.type === "lists") {
+      const card = document.createElement("div");
+      card.className = "card the-lists";
+
+      const content = document.createElement("div");
+      content.className = "card-content";
+
+      const title = document.createElement("h3");
+      title.className = "title";
+      title.textContent = item.displayTitle;
+
+      const time = document.createElement("time");
+      fillTimeData(time, item.published);
+
+      content.appendChild(title);
+      content.appendChild(time);
+      card.appendChild(content);
+      linkEl.appendChild(card);
+    }
+
     fragment.appendChild(linkEl);
   });
 

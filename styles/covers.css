@@ -1,11 +1,6 @@
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .pagetop {
   position: relative;
+  border: 2px solid var(--border);
 }
 
 .pagetop-marker {
@@ -16,12 +11,26 @@ img {
   height: 1px;
 }
 
+.video-card {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.video-card video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 main header {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 51.875rem;
   margin: 0 auto;
+  padding: 0.75rem 2.5rem 0.25rem;
   text-align: center;
 }
 
@@ -34,6 +43,8 @@ main header {
 
 .cover-story-kicker {
   height: 2.625rem;
+  margin-top: 2.375rem;
+  margin-bottom: 1rem;
 }
 
 .cover-story-kicker svg {
@@ -44,7 +55,17 @@ main header {
   margin-bottom: 0.25rem;
   font-family: "Rolling Stone Slab", serif;
   font-weight: 900;
+  font-size: 5.5rem;
+  line-height: 4.75rem;
   text-transform: uppercase;
+}
+
+.article-wrapper .author {
+  margin-top: 20px;
+}
+
+.article-wrapper time {
+  margin: 0.5rem 0 0 !important;
 }
 
 .article-content div:has(.last-articles) {
@@ -90,7 +111,9 @@ main header {
 }
 
 figure img {
+  width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .article-content figure img {
@@ -98,7 +121,13 @@ figure img {
 }
 
 @media screen and (max-width: 1000px) {
+  main header {
+    max-width: 40rem;
+    padding: 1rem 1.25rem;
+  }
+
   .cover-story-kicker {
+    margin-top: 0;
     margin-bottom: 0;
   }
 
@@ -107,9 +136,7 @@ figure img {
     line-height: 3.25rem;
   }
 
-  .article-content div:has(.last-articles),
-  .vertical-image,
-  .horizontal-image {
+  .article-content div:has(.last-articles) {
     max-width: 40rem;
     padding: 0 1.25rem;
   }
@@ -117,11 +144,25 @@ figure img {
   .paired-images {
     margin-block: 2.5rem;
   }
+
+  .vertical-image {
+    max-width: 40rem;
+    padding: 0 1.25rem;
+  }
+
+  .horizontal-image {
+    max-width: 40rem;
+    padding: 0 1.25rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .pagetop {
+    margin-top: 1rem;
+  }
+
   main header {
-    padding-block: 1.5rem 0.5rem;
+    padding: 1.5rem 1.25rem 0.5rem;
   }
 
   .cover-story-kicker {

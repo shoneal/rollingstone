@@ -58,6 +58,17 @@ main {
   width: 100%;
 }
 
+.card.the-lists {
+  position: relative;
+  height: 0;
+  padding-bottom: calc(66.6667% + 2px);
+  background-color: var(--brand-primary);
+  background-image: url(https://shoneal.github.io/rollingstone/images/the-list.svg);
+  background-repeat: no-repeat;
+  background-position: 101% 101%;
+  background-size: 20%;
+}
+
 .card-image {
   position: relative;
   margin-bottom: 1rem;
@@ -74,6 +85,13 @@ main {
 
 .card-content {
   text-align: center;
+}
+
+.the-lists .card-content {
+  position: absolute;
+  top: 50%;
+  padding-inline: 1rem;
+  transform: translateY(-50%);
 }
 
 .article-kicker {
@@ -97,12 +115,31 @@ main {
   text-transform: uppercase;
 }
 
+.the-lists .title {
+  color: white;
+  font-size: clamp(1.75rem, -1.6154rem + 5.3846vw, 2.625rem);
+  line-height: clamp(1.625rem, -0.7788rem + 3.8462vw, 2.25rem);
+  letter-spacing: 0.34px;
+  transition: 200ms cubic-bezier(0.4, 0, 1, 1);
+  -webkit-text-stroke: 1px black;
+}
+
 time {
+  display: inline-block;
+  font-family: "Feature Flat Deck", serif;
   font-size: 14px;
   line-height: 18px;
 }
 
+.the-lists time {
+  color: white;
+}
+
 @media (hover: hover) and (pointer: fine) {
+  .card.the-lists:hover {
+    background-color: black;
+  }
+
   .title:hover {
     color: var(--link-hover);
   }
@@ -136,6 +173,11 @@ time {
     font-size: 2.25rem;
     line-height: 2rem;
   }
+
+  .the-lists .title {
+    font-size: clamp(2.875rem, 1.6336rem + 2.5862vw, 3.25rem);
+    line-height: clamp(2.375rem, 1.1336rem + 2.5862vw, 2.75rem);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -160,5 +202,15 @@ time {
 
   .link-cards {
     grid-template-columns: 1fr;
+  }
+
+  .card.the-lists {
+    padding-bottom: 66.6667%;
+    background-size: 17.5%;
+  }
+
+  .the-lists .title {
+    font-size: clamp(2.875rem, 2.0714rem + 4.0179vw, 4rem);
+    line-height: clamp(2.375rem, 1.5714rem + 4.0179vw, 3.5rem);
   }
 }
