@@ -63,7 +63,12 @@ const initializePageTop = (
   data,
   container,
 ) => {
-  const useSrcset = !data?.row;
+  let useSrcset;
+  if (data.row) {
+    useSrcset = false;
+  } else {
+    useSrcset = true;
+  }
 
   if (data.video) {
     const videoWrapper = document.createElement("div");
