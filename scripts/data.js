@@ -578,7 +578,7 @@ export const data = {
     },
     timotheeChalamet: {
       video: true,
-      total: 13,
+      total: 12,
       paired: [3, 4, 7, 8],
       horizontal: [2, 6, 10],
     },

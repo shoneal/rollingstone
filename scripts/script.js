@@ -13,21 +13,34 @@ import {
   debounce,
 } from "https://shoneal.github.io/rollingstone/scripts/utils.js";
 
-
 const bodyElements = {
   header: document.querySelector("body > header"),
   cards: document.querySelector(".link-cards"),
   template: document.getElementById("card-template"),
 }; // Элементы тела страницы
-const renderLinks = (data1, data2, template, container, showImage) => {
-  const items = [...Object.entries(data1), ...Object.entries(data2)]
-    .map(([title, data], _, entries) => ({
-      title,
-      ...data,
-      type: entries === data1 ? "list" : "cover",
-    }))
-    .sort((a, b) => new Date(b.published) - new Date(a.published));
+const prepareItems = (data, globalData) => {
+  return Object.entries(data).map(([key, value]) => {
+    let type = "covers";
+    let displayTitle = key;
 
+    if (value.key) {
+      type = "lists";
+
+      const count = Object.keys(globalData[value.key]).length;
+
+      displayTitle = key.startsWith("The ")
+        ? `The ${count} ${key.slice(4)}`
+        : `${count} ${key}`;
+    }
+
+    return {
+      ...value,
+      type,
+      displayTitle,
+    };
+  });
+}; // Подсчет элементов в списках
+const renderLinks = (items, template, container, showImage) => {
   const fragment = document.createDocumentFragment();
 
   const templateContent = template.content;
@@ -47,16 +60,15 @@ const renderLinks = (data1, data2, template, container, showImage) => {
     ];
 
     img.style.opacity = "0";
-    img.src = imgPath(item.link, "910");
-    ((img.srcset = `${imgPath(item.link, "225")} 225w, ${imgPath(
-      item.link,
-      "910",
-    )} 910w`),
-      (img.alt = item.title));
+    const path910 = imgPath(item.link, "910");
+    const path225 = imgPath(item.link, "225");
+    img.src = path910;
+    img.srcset = `${path225} 225w, ${path910} 910w`;
+    img.alt = item.displayTitle;
     showImage(img);
 
-    kicker.textContent = item.type === "list" ? "The Lists" : "Cover Story";
-    title.textContent = item.title;
+    kicker.textContent = item.type === "lists" ? "The Lists" : "Cover Story";
+    title.textContent = item.displayTitle;
 
     const date = new Date(item.published);
     time.datetime = date.toISOString().replace("Z", "-0400");
@@ -75,13 +87,9 @@ const renderLinks = (data1, data2, template, container, showImage) => {
 document.addEventListener("DOMContentLoaded", () => {
   changingTheme(); // Смена темы
 
-  renderLinks(
-    listsLinks,
-    coversLinks,
-    bodyElements.template,
-    bodyElements.cards,
-    showImage,
-  ); // Вывод элементов в структуру HTML
+  const allLinks = prepareItems({ ...listsLinks, ...coversLinks }, data); // Объединяем данные перед обработкой
+  allLinks.sort((a, b) => new Date(b.published) - new Date(a.published)); // Сортируем по дате
+  renderLinks(allLinks, bodyElements.template, bodyElements.cards, showImage); // Вывод элементов в структуру HTML
 
   switchingStickinessHeader(
     document.querySelector(".card:first-child"),
