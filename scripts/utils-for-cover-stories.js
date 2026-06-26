@@ -73,10 +73,16 @@ const initializePageTop = (
     const videoWrapper = document.createElement("div");
     videoWrapper.className = "video-card";
     const video = document.createElement("video");
+
+    video.setAttribute("muted", "");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("loop", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("preload", "auto");
+
     video.poster = `${linkImg}card-910.jpg`;
     video.src = `${link}video/video.mp4`;
-    video.preload = "auto";
-    video.loop = video.muted = video.autoplay = video.playsInline = true;
+
     videoWrapper.appendChild(video);
     container.appendChild(videoWrapper);
   } else {
