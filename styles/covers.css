@@ -177,6 +177,10 @@ figure img {
     transform: scale(0.7);
   }
 
+  .article-wrapper .author {
+    margin-top: 0.75rem;
+  }
+
   .paired-images {
     grid-template-columns: 1fr;
     max-width: 100vw;
