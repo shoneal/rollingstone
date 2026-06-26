@@ -25,7 +25,8 @@ a {
 
 figure,
 img,
-svg {
+svg,
+video {
   display: block;
   pointer-events: none;
 }
