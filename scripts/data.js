@@ -594,9 +594,9 @@ export const data = {
       total: 5,
       horizontal: [2, 3, 5],
     },
-    selenaGomez: {
-      total: 5,
-      horizontal: [2, 4],
-    },
+    // selenaGomez: {
+    //   total: 5,
+    //   horizontal: [2, 4],
+    // },
   }, // Фотосессии
 };

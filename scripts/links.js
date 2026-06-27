@@ -49,10 +49,10 @@ const coversLinks = {
     link: "https://shoneal.github.io/rollingstone-cover-story-michael-b-jordan/",
     published: "2023-02-13",
   },
-  "Selena Gomez — actress, singer, songwriter, businesswoman, and producer": {
-    link: "https://shoneal.github.io/rollingstone-cover-story-selena-gomez/",
-    published: "2022-11-03",
-  },
+  // "Selena Gomez — actress, singer, songwriter, businesswoman, and producer": {
+  //   link: "https://shoneal.github.io/rollingstone-cover-story-selena-gomez/",
+  //   published: "2022-11-03",
+  // },
 }; // Сайты с ссылками фотосессий
 
 export { listsLinks, coversLinks };
