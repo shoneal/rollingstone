@@ -40,6 +40,8 @@ const createImageBlock = (
       name + "-910",
       folder,
     )} 910w, ${getImagePath(link, name, folder)} 2400w`;
+
+    img.sizes = "100vw";
   }
 
   let src = getImagePath(link, name, folder);
