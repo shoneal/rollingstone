@@ -45,6 +45,9 @@ const initializeHeaderImages = (
   data,
   container,
   caption,
+  useSrcset = false,
+  png = false,
+  count,
   config = {},
 ) => {
   const {
@@ -59,7 +62,7 @@ const initializeHeaderImages = (
     .map(([key]) => key);
 
   const randomElements = [];
-  while (randomElements.length < 3) {
+  while (randomElements.length < count) {
     const key = filtredKeys[Math.floor(Math.random() * filtredKeys.length)];
     if (!randomElements.includes(key)) randomElements.push(key);
   }
@@ -75,18 +78,26 @@ const initializeHeaderImages = (
     const imageKey = getKey(item, key);
     const author = getAuthor(item, key);
 
-    const img = Object.assign(document.createElement("img"), {
-      src: getImagePath(link, author, "header/desktop", true),
-      srcset: `${getImagePath(
+    const img = document.createElement("img");
+
+    if (useSrcset) {
+      img.srcset = `${getImagePath(
         link,
         author,
         "header/mobile",
         true,
-      )} 300w, ${getImagePath(link, author, "header/desktop", true)} 2400w`,
-      sizes: "100vw",
-      alt: author,
-      onload: onImageLoad,
-    });
+      )} 300w, ${getImagePath(link, author, "header/desktop", true)} 2400w`;
+
+      img.sizes = "100vw";
+    }
+
+    let src = getImagePath(link, author, "header/desktop", true);
+    if (png) {
+      src = src.replace(/\.jpg$/, ".png");
+    }
+    img.src = src;
+    img.alt = author;
+    img.onload = onImageLoad;
 
     const wrapper = document.createElement("div");
     wrapper.appendChild(img);
