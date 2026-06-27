@@ -79,19 +79,22 @@ const initializeHeaderImages = (
     const author = getAuthor(item, key);
 
     const img = document.createElement("img");
+    let folder = "header";
 
     if (useSrcset) {
+      folder = "header/desktop";
+
       img.srcset = `${getImagePath(
         link,
         author,
         "header/mobile",
         true,
-      )} 300w, ${getImagePath(link, author, "header/desktop", true)} 2400w`;
+      )} 300w, ${getImagePath(link, author, folder, true)} 2400w`;
 
       img.sizes = "100vw";
     }
 
-    let src = getImagePath(link, author, "header/desktop", true);
+    let src = getImagePath(link, author, folder, true);
     if (png) {
       src = src.replace(/\.jpg$/, ".png");
     }
