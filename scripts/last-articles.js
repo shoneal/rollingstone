@@ -1,4 +1,4 @@
-const renderLastArticlesAndDate = (
+export const renderLastArticlesAndDate = (
   primaryData,
   secondaryData,
   currentUrl,
@@ -13,7 +13,8 @@ const renderLastArticlesAndDate = (
       .filter(([_, { link }]) => link !== currentUrl.content)
       .map(([name, rawData]) => {
         let displayName = name;
-        if (data?.[rawData.key]) {
+
+        if (!rawData.noCount && data?.[rawData.key]) {
           const totalCount = Object.keys(data[rawData.key]).length;
           if (totalCount > 0) {
             displayName = name.startsWith("The ")
@@ -21,6 +22,7 @@ const renderLastArticlesAndDate = (
               : `${totalCount} ${name}`;
           }
         }
+
         return {
           name,
           displayName,
@@ -93,5 +95,3 @@ const renderLastArticlesAndDate = (
     });
   }
 }; // Создание последних ссылок автора и времени публикации страницы
-
-export { renderLastArticlesAndDate };

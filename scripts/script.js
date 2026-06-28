@@ -23,7 +23,7 @@ const prepareItems = (data, globalData) => {
     let type = "covers";
     let displayTitle = key;
 
-    if (value.key) {
+    if (value.key && !value.noCount) {
       type = "lists";
 
       const count = Object.keys(globalData[value.key]).length;

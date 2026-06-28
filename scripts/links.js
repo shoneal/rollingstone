@@ -1,9 +1,14 @@
 const listsLinks = {
+  "Best Picture Oscar Winners of the 21st Century, Ranked": {
+    link: "https://shoneal.github.io/rollingstone-oscar-best-picture/",
+    published: "2026-02-17",
+    key: "oscarBestPicture",
+    noCount: "yes",
+  },
   "The Best Albums of the 21st Century So Far": {
     link: "https://shoneal.github.io/rollingstone-best-albums/",
     published: "2023-12-31",
     key: "albums",
-    // published: "2025-01-10"
   },
   "The Best Video Games of All Time": {
     link: "https://shoneal.github.io/rollingstone-best-video-games/",

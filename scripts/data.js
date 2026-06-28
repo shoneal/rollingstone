@@ -548,6 +548,155 @@ export const data = {
         "In order to get away from their busy lives, the Wilson family takes a vacation to Santa Cruz, California. At night, four strangers break into Adelaide's childhood home. The family is shocked to find out that the intruders look like them.",
     },
   }, // Хорроры
+  oscarBestPicture: {
+    Oppenheimer: {
+      year: 2023,
+      place: 21,
+      link: "https://www.imdb.com/title/tt15398776/",
+      description:
+        "Very boring and uninteresting. Three hours of watching Cillian Murphy play Thomas Shelby from Peaky Blinders. The only bright spot is Robert Downey Jr.'s role.",
+    },
+    "The Shape of Water": {
+      year: 2017,
+      place: 20,
+      link: "https://www.imdb.com/title/tt5580390/",
+      description:
+        "It's too fairy-tale-like. Guillermo del Toro, as always, created a colorful picture, beautiful costumes, and a believable world, but left the characters completely blank. You can understand what the movie is about and how it will end just by reading the description.",
+    },
+    Parasite: {
+      year: 2019,
+      place: 19,
+      link: "https://www.imdb.com/title/tt6751668/",
+      description:
+        "It's very difficult to watch if you haven't encountered Asian cinema before. The highlight of the film - after the middle, the film switches to a different genre - didn't have any effect on me at all. Not only was the film already strange, but it also became cringe. The satire on the “rich-poor” issue made both sides appear stupid.",
+    },
+    "The Hurt Locker": {
+      year: 2009,
+      place: 18,
+      link: "https://www.imdb.com/title/tt0887912/",
+      description:
+        "Jeremy Renner's performance is strong, but the film is forgotten a week after watching it. There are many better war films out there.",
+    },
+    Birdman: {
+      year: 2014,
+      place: 17,
+      link: "https://www.imdb.com/title/tt2562232/",
+      description:
+        "Iñárritu's beautiful style is immediately noticeable, as he likes to shoot in natural light, but the film itself is very strange. Michael Keaton is strange, Edward Norton is strange, Emma Stone is cool.",
+    },
+    Anora: {
+      year: 2024,
+      place: 16,
+      link: "https://www.imdb.com/title/tt28607951/",
+      description:
+        "It's cool that this movie won an Oscar, but it's the only thing that makes it stand out. Yes, it has an unusual story and Russian and Armenian-speaking characters, but there were other movies this year that were more deserving of winning an Oscar.",
+    },
+    Crash: {
+      year: 2005,
+      place: 15,
+      link: "https://www.imdb.com/title/tt0375679/",
+      description:
+        "Good story. Well-chosen cast. The film makes you feel interested and empathetic. That's all.",
+    },
+    "The Lord of the Rings: The Return of the King": {
+      year: 2003,
+      place: 14,
+      link: "https://www.imdb.com/title/tt0167260/",
+      description:
+        "The Lord of the Rings is a legendary adventure movie. And The Return of the King is the great conclusion of the legendary trilogy with one of the most epic final battles. Legendary, great, and epic are the only words that come to mind when describing this film.",
+    },
+    Gladiator: {
+      year: 2000,
+      place: 13,
+      link: "https://www.imdb.com/title/tt0172495/",
+      description:
+        "A man's movie about courage and revenge. Ridley Scott's masterpiece, a film that he has never surpassed since. Joaquin Phoenix's portrayal of the villain and scoundrel is so masterful that after watching the film as a child and being deeply impressed, I have been unable to watch any other film with him, as I have come to despise him.",
+    },
+    "Slumdog Millionaire": {
+      year: 2008,
+      place: 12,
+      link: "https://www.imdb.com/title/tt1010048/",
+      description:
+        "The pinnacle of Danny Boyle's creativity and the discovery of the great actor Dev Patel. Additionally, Slumdog Millionaire features excellent music, an incredibly captivating story, and a masterfully portrayed Indian essence.",
+    },
+    Nomadland: {
+      year: 2020,
+      place: 11,
+      link: "https://www.imdb.com/title/tt9770150/",
+      description:
+        "It's a heartfelt story about modern-day “nomads” - people who have either become unnecessary where they are or simply haven't found themselves. Additionally, Chloe Zhao's stunning cinematography captures the vastness of America.",
+    },
+    CODA: {
+      year: 2021,
+      place: 10,
+      link: "https://www.imdb.com/title/tt10366460",
+      description:
+        "Troy Kotsur - applause. The most well-deserved Oscar. And CODA is just a kind, bright, and cute movie that everyone should watch.",
+    },
+    "One Battle After Another": {
+      year: 2025,
+      place: 9,
+      link: "https://www.imdb.com/title/tt30144839/",
+      description:
+        "Finally, the long-awaited Oscar for Paul Thomas Anderson. A film that feels like the chase begins around the 15th minute and doesn't end until the end. It also features a brilliant cast led by an unexpectedly hilarious DiCaprio.",
+    },
+    Moonlight: {
+      year: 2016,
+      place: 8,
+      link: "https://www.imdb.com/title/tt4975722/",
+      description:
+        "Yes, La La Land should have won this year, but Moonlight is also a great movie. At first, it may seem like another agenda, but in reality, it's just a cool story about the difficult life of an ordinary person.",
+    },
+    "12 Years a Slave": {
+      year: 2013,
+      place: 7,
+      link: "https://www.imdb.com/title/tt2024544/",
+      description:
+        "It's impossible to watch this movie without feeling something. It will evoke a wide range of emotions in you, including anger, empathy, rage, fear, sadness, and more. It's probably the best film on one of the most difficult topics - slavery (Django Unchained doesn't count).",
+    },
+    "Green Book": {
+      year: 2018,
+      place: 6,
+      link: "https://www.imdb.com/title/tt6966692/",
+      description:
+        "Everything about this movie is cool. The plot is cool, Viggo Mortenson is cool, and Mahershala Ali is cool. Green Book works in every aspect that an Oscar-winning movie should work in.",
+    },
+    "No Country for Old Men": {
+      year: 2007,
+      place: 5,
+      link: "https://www.imdb.com/title/tt0477348/",
+      description:
+        "Joel and Ethan Coen gave us one of the best villains in cinematic history. And No Country for Old Men is one continuous chase film with an atmospheric and violent American South.",
+    },
+    "Million Dollar Baby": {
+      year: 2004,
+      place: 4,
+      link: "https://www.imdb.com/title/tt0405159/",
+      description:
+        "The good old Uncle Clint Eastwood. Not only is he a great actor, but he's also a great director. This is a great movie that I keep rewatching. Hilary Swank is incredible in this role.",
+    },
+    "Everything Everywhere All at Once": {
+      year: 2022,
+      place: 3,
+      link: "https://www.imdb.com/title/tt6710474/",
+      description:
+        "Everyone went crazy when this movie won an Oscar, including me. It's also mind-blowing. This is the perfect description for this movie, but don't be fooled by its flashy, crazy, and scandalous appearance. Instead, embrace the powerful and dramatic storyline that lies beneath.",
+    },
+    "The Departed": {
+      year: 2006,
+      place: 2,
+      link: "https://www.imdb.com/title/tt0407887/",
+      description:
+        "Yes, it's a remake of a Chinese film, but what a remake it is. Scorsese brought together all the best elements of Hollywood at the time in The Departed: a complex plot, the brilliant Jack Nicholson, the perfect Matt Damon, and one of the best actors of our time, Leonardo DiCaprio. And I don't know about the original, but this film has one of the best endings ever.",
+    },
+    "The Artist": {
+      year: 2011,
+      place: 1,
+      link: "https://www.imdb.com/title/tt1655442/",
+      description:
+        "A silent, black-and-white film that wasn't released in the 1960s but in the 2000s. It won an Oscar. You might have a lot of questions. But The Artist is just a movie to watch and enjoy. If you don't like this film, I don't have much to talk about with you, because you don't really understand cinema.",
+    },
+  }, // Лучшие фильмы Оскар
   coverStories: {
     charliXcx: {
       total: 7,
