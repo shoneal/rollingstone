@@ -1,5 +1,5 @@
 const listsLinks = {
-  "Best Picture Oscar Winners of the 21st Century, Ranked": {
+  "Best Picture Oscar Winners of the 21st Century": {
     link: "https://shoneal.github.io/rollingstone-oscar-best-picture/",
     published: "2026-02-17",
     key: "oscarBestPicture",
