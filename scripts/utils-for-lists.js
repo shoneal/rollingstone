@@ -183,14 +183,13 @@ const handleNavigationClick = (e) => {
   if (targetSlide) targetSlide.scrollIntoView();
 }; // Клики по навигации
 const initApp = (
-  { titleCount, authorName, author, navigation },
+  { authorName, author, navigation },
   dataLength,
   coversLinks,
   listsLinks,
   createNavigation,
   updateActiveLink,
 ) => {
-  titleCount.textContent = dataLength; // Обновление числа в заголовке
   authorName.textContent = author.content; // Имя автора в HTML
   createNavigation(dataLength, navigation); // Создание навигации
   updateActiveLink(navigation); // Обновление навигации
