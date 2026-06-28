@@ -23,14 +23,15 @@ const prepareItems = (data, globalData) => {
     let type = "covers";
     let displayTitle = key;
 
-    if (value.key && !value.noCount) {
+    if (value.key) {
       type = "lists";
 
-      const count = Object.keys(globalData[value.key]).length;
-
-      displayTitle = key.startsWith("The ")
-        ? `The ${count} ${key.slice(4)}`
-        : `${count} ${key}`;
+      if (!value.noCount) {
+        const count = Object.keys(globalData[value.key]).length;
+        displayTitle = key.startsWith("The ")
+          ? `The ${count} ${key.slice(4)}`
+          : `${count} ${key}`;
+      }
     }
 
     return {
