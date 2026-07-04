@@ -73,7 +73,8 @@ const initializeHeaderImages = (
 
   const fragment = document.createDocumentFragment();
 
-  for (const key of randomElements) {
+  for (let i = 0; i < randomElements.length; i++) {
+    const key = randomElements[i];
     const item = data[key];
     const imageKey = getKey(item, key);
     const author = getAuthor(item, key);
