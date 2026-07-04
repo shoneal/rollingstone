@@ -103,6 +103,7 @@ const initializeHeaderImages = (
     img.onload = onImageLoad;
 
     const wrapper = document.createElement("div");
+    wrapper.className = `figure-image-${i + 1}`;
     wrapper.appendChild(img);
     fragment.appendChild(wrapper);
   }
