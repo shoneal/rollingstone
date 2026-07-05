@@ -32,6 +32,7 @@ body > header.sticky {
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
+
 }
 
 header.sticky .header-link {
